@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>Colorado Open Election Funding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"> -->
+  </head>
+  <body>
+    <div class="container">
+        <h1>{{ name }}</h1>
+        <h2>{{party }} candidate for {{ office }} - {{jurisdiction}} {% if district is string %} ({{district}}) {% endif %}</h2>
+      <div>The average donation is <strong>${{ "%.2f" | format(mean) }}</strong> across {{ "%d" | format(donors) }} unique donors (who made a total of {{ "%d" | format(donations) }} donations).
+      </div>
+
+      <div>
+          Average in-state donation: ${{"%.2f" | format(in_state_donations_amt)}}  (from {{"%d" | format(in_state_donors_count)}} in-state donors).
+      </div>
+      <div>
+          Average out-of-state donation: ${{"%.2f" | format(oo_state_donations_amt)}} (from {{"%d" | format(oo_state_donors_count)}} out-of-state donors).
+      <div/>
+
+        <div><a href="http://tracer.sos.colorado.gov/PublicSite/SearchPages/CandidateDetail.aspx?SeqID={{org_id}}">Link to profile on Secretary of State website</a></div>
+    </div>
+  </body>
+</html>
