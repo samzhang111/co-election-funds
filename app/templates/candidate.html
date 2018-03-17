@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>Colorado Open Election Funding</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='c3.min.css') }}">
   </head>
   <body>
     <div class="container">
@@ -20,8 +19,48 @@
       <div>
           Average out-of-state donation: ${{"%.2f" | format(oo_state_donations_amt)}} (from {{"%d" | format(oo_state_donors_count)}} out-of-state donors).
       <div/>
+          <div>
+              <span id="state-donor-chart"></span>
+              <span id="state-amt-chart"></span>
+          </div>
 
         <div><a href="http://tracer.sos.colorado.gov/PublicSite/SearchPages/CandidateDetail.aspx?SeqID={{org_id}}">Link to profile on Secretary of State website</a></div>
     </div>
+    <script src="{{ url_for('static', filename='d3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='c3.min.js') }}"></script>
+    <script>
+        document.body.onload = function(e) {
+            c3.generate({
+                size: {
+                    height: 240,
+                    width: 480
+                },
+                bindto: '#state-donor-chart',
+                data: {
+                    columns: [
+                        ['# out-of-state donors', {{oo_state_donors_count | int}}],
+                        ['# in-state donors', {{in_state_donors_count | int}}],
+                    ],
+                    type: 'pie',
+                },
+            });
+
+            c3.generate({
+                size: {
+                    height: 240,
+                    width: 480
+                },
+                bindto: '#state-amt-chart',
+                data: {
+                    columns: [
+                        ['% funding from out-of-state donors', {{oo_state_donations_amt | float}}],
+                        ['% funding from in-state donors', {{in_state_donations_amt | float}}],
+                    ],
+                    type: 'pie',
+                },
+            });
+        };
+    </script>
+
   </body>
 </html>
