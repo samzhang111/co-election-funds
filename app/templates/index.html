@@ -9,9 +9,12 @@
   </head>
   <body>
     <div class="container">
-      <h1>Oops, I haven't done this yet.</h1>
-      <br>
-      <div id="main"></div>
+        One limitation of the current dataset is we don't have exact years for campaigns. We are using the "declared date" as a rough proxy for the year of the election, even though most elections happen the year after most declarations.
+        <ul>
+            {% for race in races %}
+            <li> <a href="/race/{{race.race_id}}">{{ race.office}} - {{race.jurisdiction}} {% if race.district is string %} ({{race.district}}) {% endif %} ({{"~%d" | format(race.declared_year)}})</a></li>
+            {% endfor %}
+        </ul>
     </div>
   </body>
 </html>

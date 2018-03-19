@@ -9,7 +9,7 @@
   <body>
     <div class="container">
         <h1>{{ name }}</h1>
-        <h2>{{party }} candidate for {{ office }} - {{jurisdiction}} {% if district is string %} ({{district}}) {% endif %}</h2>
+        <h2>{{party }} candidate for <a href="/race/{{race_id}}">{{ office }} - {{jurisdiction}} {% if district is string %} ({{district}}) {% endif %}</a></h2>
       <div>The average donation is <strong>${{ "%.2f" | format(mean) }}</strong> across {{ "%d" | format(donors) }} unique donors (who made a total of {{ "%d" | format(donations) }} donations).
       </div>
 
