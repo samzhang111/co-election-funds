@@ -21,8 +21,8 @@
             <tr>
                 <td> <a href="/candidates/{{"%d" | format(candidate.CO_ID)}}">{{candidate.name}}</a></td>
                 <td> {{"$%.2f (%d)" | format(candidate['mean'], candidate.donors)}} </td>
-                <td> {{"$%.2f (%d)" | format(candidate.in_state_donations_amt, candidate.in_state_donors_count)}} </td>
-                <td> {{"$%.2f (%d)" | format(candidate.oo_state_donations_amt, candidate.oo_state_donors_count)}} </td>
+                <td> {{"$%.2f (%d)" | format(candidate.in_state_donations_mean, candidate.in_state_donors_count)}} </td>
+                <td> {{"$%.2f (%d)" | format(candidate.oo_state_donations_mean, candidate.oo_state_donors_count)}} </td>
             </tr>
             {% endfor %}
         </table>
